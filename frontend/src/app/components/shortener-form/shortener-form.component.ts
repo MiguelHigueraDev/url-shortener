@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { HistoryService } from '../../services/history.service';
 
 @Component({
   selector: 'app-shortener-form',
@@ -28,7 +29,7 @@ import { MatCardModule } from '@angular/material/card';
   styleUrl: './shortener-form.component.css',
 })
 export class ShortenerFormComponent {
-  constructor(private shortenerService: ShortenerService) {
+  constructor(private shortenerService: ShortenerService, private historyService: HistoryService) {
     this.originalUrl.valueChanges.subscribe(() => {
       this.updateErrorMessage();
     });
@@ -52,6 +53,7 @@ export class ShortenerFormComponent {
       .shortenUrl(this.originalUrl.value!)
       .subscribe((response: any) => {
         this.shortenedUrl = response.url;
+        this.historyService.addToHistory(this.shortenedUrl, this.originalUrl.value!);
       });
   }
 

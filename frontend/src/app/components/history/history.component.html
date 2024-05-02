@@ -1,0 +1,18 @@
+<div class="card">
+    <mat-card-content>
+        <h2>History</h2>
+        @if (history.length === 0) {
+            <p>No history yet</p>
+        } @else {
+            @for (item of history; track $index) {
+                <mat-card class="history-card">
+                    <p class="original-url">Original URL</p>
+                    <a class="url" href="{{item.originalUrl}}" target="_blank" style="display: block; margin-bottom: 6px;">{{item.originalUrl}}</a>
+                    <p class="short-url">Short URL</p>
+                    <a class="url" href="{{item.shortenedUrl}}" target="_blank" style="display: block; margin-bottom: 6px;">{{item.shortenedUrl}}</a>
+                    <button mat-raised-button color="accent">Copy</button>
+                </mat-card>
+            }
+        }
+    </mat-card-content>
+</div>

@@ -1,0 +1,44 @@
+.card {
+    max-width: 250px;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.history-card {
+    padding: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.original-url, .short-url {
+    word-wrap: break-word;
+    font-size: 12px;
+}
+
+.url {
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    color: #000;
+}
+
+@media screen and (min-width: 558px) {
+    
+    .card {
+        max-width: 400px;
+    }
+}
+
+p, a {
+    margin: 0;
+}
+
+button {
+    width: 100px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
