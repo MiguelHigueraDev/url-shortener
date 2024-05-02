@@ -50,7 +50,7 @@ export class ShortenerFormComponent {
     this.shortenerService
       .shortenUrl(this.originalUrl.value!)
       .subscribe((response: any) => {
-        this.shortenedUrl = response;
+        this.shortenedUrl = response.url;
       });
   }
 
@@ -62,5 +62,9 @@ export class ShortenerFormComponent {
     } else {
       this.errorMessage = '';
     }
+  }
+
+  copyToClipboard() {
+    navigator.clipboard.writeText(this.shortenedUrl);
   }
 }

@@ -1,7 +1,7 @@
 form {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 16px;
     align-items: center;
     justify-content: center;
     max-width: 600px;
@@ -14,9 +14,19 @@ form {
     width: 250px;
 }
 
+.card {
+    max-width: 250px;
+    margin: 0 auto;
+    text-align: center;
+}
+
 @media screen and (min-width: 558px) {
     .input {
         width: 450px;
     }
     
+    .card {
+        max-width: 400px;
+    }
 }
+
