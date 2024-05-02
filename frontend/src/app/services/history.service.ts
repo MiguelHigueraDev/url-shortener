@@ -1,6 +1,8 @@
 import { Injectable, signal } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
+const MAX_HISTORY_LENGTH = 100;
+
 @Injectable({
   providedIn: 'root',
 })
@@ -21,7 +23,7 @@ export class HistoryService {
       if (parsedHistory.some((entry: any) => entry.shortenedUrl === shortenedUrl)) return;
 
       parsedHistory.push({ shortenedUrl, originalUrl });
-      if (parsedHistory.length > 5) parsedHistory.shift();
+      if (parsedHistory.length > MAX_HISTORY_LENGTH) parsedHistory.shift();
       localStorage.setItem('history', JSON.stringify(parsedHistory));
     }
     this.historySubject.next(this.getHistory());
