@@ -57,7 +57,7 @@ export class ShortenerFormComponent {
 
   updateErrorMessage() {
     if (this.originalUrl.hasError('required')) {
-      this.errorMessage = 'An URL is required';
+      this.errorMessage = 'A URL is required';
     } else if (this.originalUrl.hasError('pattern')) {
       this.errorMessage = 'Must be a valid URL';
     } else {
