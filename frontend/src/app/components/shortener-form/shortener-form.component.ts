@@ -39,8 +39,9 @@ export class ShortenerFormComponent {
 
   originalUrl = new FormControl('', [
     Validators.required,
-    Validators.pattern('https?://.+'),
+    Validators.pattern('https?://[^.]+\\..+'),
     Validators.maxLength(255),
+    Validators.minLength(10),
   ]);
   errorMessage = '';
   shortenedUrl = '';
@@ -58,7 +59,7 @@ export class ShortenerFormComponent {
     if (this.originalUrl.hasError('required')) {
       this.errorMessage = 'An URL is required';
     } else if (this.originalUrl.hasError('pattern')) {
-      this.errorMessage = 'Must start with http:// or https://';
+      this.errorMessage = 'Must be a valid URL';
     } else {
       this.errorMessage = '';
     }
