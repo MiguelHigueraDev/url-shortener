@@ -22,4 +22,8 @@ export class HistoryComponent implements OnInit {
     this.history = this.historyService.getHistory();
   }
 
+  copyShortUrl(url: string) {
+    navigator.clipboard.writeText(url);
+  }
+
 }
