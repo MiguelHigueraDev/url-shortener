@@ -36,6 +36,6 @@ public class ShortenerController {
     @PostMapping("/shorten")
     public String shortenUrl(@Valid @RequestBody UrlDto urlDto) {
         Url url = shortenerService.createShortUrl(urlDto);
-        return shortenerProperties.getBaseUrl() + "/" + url.getShortUrl();
+        return "{\"url\":\"" + shortenerProperties.getBaseUrl() + "/" + url.getShortUrl() + "\"}";
     }
 }
