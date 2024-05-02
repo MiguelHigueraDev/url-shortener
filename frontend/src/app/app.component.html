@@ -1,8 +1,4 @@
 <app-header/>
 <main>
-  <h1>URL shortener</h1>
-  <form (ngSubmit)="shortenUrl()">
-    <input type="text" placeholder="Enter URL" [(ngModel)]="originalUrl" name="url" required>
-    <button type="submit">Shorten</button>
-  </form>
+  <app-shortener-form />
 </main>

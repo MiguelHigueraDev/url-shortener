@@ -1,0 +1,20 @@
+<form (ngSubmit)="shortenUrl()">
+    <mat-form-field appearance="outline" class="input">
+        <mat-label>Enter URL</mat-label>
+        <input matInput type="url" placeholder="Enter URL" [formControl]="originalUrl" name="url" required pattern="(https?:\/\/).+">
+        @if (originalUrl.invalid) {
+            <mat-error>{{errorMessage}}</mat-error>
+        }
+    </mat-form-field>
+    <button mat-stroked-button color="accent" aria-label="Shorten">Shorten!</button>
+</form>
+<div>
+    @if (shortenedUrl) {
+        <mat-card>
+            <mat-card-content>
+                <p>Shortened URL: <a href="{{shortenedUrl}}" target="_blank">{{shortenedUrl}}</a></p>
+            </mat-card-content>
+        </mat-card>
+    }
+
+</div>
