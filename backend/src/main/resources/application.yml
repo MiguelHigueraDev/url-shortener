@@ -14,3 +14,4 @@ shortener:
   charset: abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789
   short-url-min-length: 3
   short-url-max-length: 6
+  home-url: https://create.misft.me

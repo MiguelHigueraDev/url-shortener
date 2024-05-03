@@ -21,11 +21,17 @@ public class ShortenerController {
         this.shortenerProperties = shortenerProperties;
     }
 
+    @GetMapping("/")
+    public RedirectView redirectToHome() {
+        return new RedirectView(shortenerProperties.getHomeUrl());
+    }
+
     @GetMapping("/{shortUrl}")
     public RedirectView redirectToUrl(@PathVariable String shortUrl) {
         Optional<Url> url = shortenerService.getUrlObjFromShortUrl(shortUrl);
+        // Redirect to home url if the short url is not found
         if (url.isEmpty()) {
-           return new RedirectView(shortenerProperties.getBaseUrl());
+           return new RedirectView(shortenerProperties.getHomeUrl());
         }
 
         shortenerService.increaseVisitCount(url.get().getId());

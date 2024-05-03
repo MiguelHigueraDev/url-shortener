@@ -21,4 +21,7 @@ public class ShortenerProperties {
     @Value("${SHORTENER_CHARSET}")
     private String charset;
 
+    @Value("{SHORTENER_HOME_URL}")
+    private String homeUrl;
+
 }
