@@ -1,9 +1,9 @@
 services:
-  app:
+  backend:
     image: 'docker-spring-boot-postgres:latest'
     build:
       context: ./
-    container_name: app
+    container_name: backend
     depends_on:
       - db
     environment:
@@ -30,4 +30,3 @@ services:
       - POSTGRES_DB=$POSTGRES_DB_NAME
     ports:
       - '$LOCAL_PORT_POSTGRES:$DOCKER_PORT_POSTGRES'
-    
