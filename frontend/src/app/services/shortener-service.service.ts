@@ -2,6 +2,12 @@ import { Injectable } from '@angular/core';
 import { environment } from '../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+/**
+ * This service is responsible for shortening URLs.
+ * It sends a POST request to the backend to shorten a URL.
+ * The backend returns the shortened URL.
+ */
+
 @Injectable({
   providedIn: 'root',
 })

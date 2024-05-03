@@ -19,6 +19,7 @@ export class HistoryComponent implements OnInit {
     this.historyService.getHistoryObservable().subscribe((history) => {
       this.history = history;
     });
+    // Get current history
     this.history = this.historyService.getHistory();
   }
 

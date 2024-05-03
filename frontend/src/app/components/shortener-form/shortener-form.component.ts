@@ -30,6 +30,7 @@ import { HistoryService } from '../../services/history.service';
 })
 export class ShortenerFormComponent {
   constructor(private shortenerService: ShortenerService, private historyService: HistoryService) {
+    // Update error message when input changes
     this.originalUrl.valueChanges.subscribe(() => {
       this.updateErrorMessage();
     });
@@ -47,6 +48,7 @@ export class ShortenerFormComponent {
   errorMessage = '';
   shortenedUrl = '';
 
+  // Shorten the URL and add it to the history
   shortenUrl() {
     if (this.originalUrl.invalid) return;
     this.shortenerService

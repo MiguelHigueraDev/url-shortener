@@ -1,5 +1,11 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+
+/**
+ * This service is responsible for managing the history of shortened URLs.
+ * It stores the history in the local storage and provides an observable to listen to changes.
+ * The history is stored as an array of objects (Url) with the shortened URL and the original URL.
+ */
 
 const MAX_HISTORY_LENGTH = 100;
 
