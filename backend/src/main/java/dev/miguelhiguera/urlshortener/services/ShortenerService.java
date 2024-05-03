@@ -6,6 +6,7 @@ import dev.miguelhiguera.urlshortener.entities.Url;
 import java.util.Optional;
 
 public interface ShortenerService {
+    Long getUrlCount();
     String getOriginalUrlFromShortUrl(String shortUrl);
     Optional<Url> getUrlObjFromShortUrl(String shortUrl);
     Url createShortUrl(UrlDto urlDto);

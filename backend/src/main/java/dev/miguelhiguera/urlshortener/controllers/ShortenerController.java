@@ -44,4 +44,9 @@ public class ShortenerController {
         Url url = shortenerService.createShortUrl(urlDto);
         return "{\"url\":\"" + shortenerProperties.getBaseUrl() + "/" + url.getShortUrl() + "\"}";
     }
+
+    @GetMapping("/stats/count")
+    public String getUrlCount() {
+        return "{ \"count\": " + shortenerService.getUrlCount() + " }";
+    }
 }

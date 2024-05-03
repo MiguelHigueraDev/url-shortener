@@ -19,6 +19,11 @@ public class ShortenerServiceImpl implements ShortenerService {
     }
 
     @Override
+    public Long getUrlCount() {
+        return shortenerRepository.count();
+    }
+
+    @Override
     public String getOriginalUrlFromShortUrl(String shortUrl) {
         Optional<Url> optionalUrl = shortenerRepository.findByShortUrl(shortUrl);
 
