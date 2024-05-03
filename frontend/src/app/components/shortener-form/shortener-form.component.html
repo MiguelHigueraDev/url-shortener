@@ -14,7 +14,7 @@
         <mat-card class="card">
             <mat-card-content>
                 <h2>Shortened URL</h2>
-                <a href="{{shortenedUrl | removeHttp}}" target="_blank" style="display:block; margin-top: 10px; margin-bottom: 16px;">{{shortenedUrl | removeHttp}}</a>
+                <a href="{{shortenedUrl}}" target="_blank" style="display:block; margin-top: 10px; margin-bottom: 16px;">{{shortenedUrl | removeHttp}}</a>
                 <button mat-stroked-button color="accent" aria-label="Copy" (click)="copyToClipboard()" style="display: block;margin: 0 auto;">Copy</button>
             </mat-card-content>
         </mat-card>
