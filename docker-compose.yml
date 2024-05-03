@@ -1,0 +1,33 @@
+services:
+  app:
+    image: 'docker-spring-boot-postgres:latest'
+    build:
+      context: ./
+    container_name: app
+    depends_on:
+      - db
+    environment:
+      - POSTGRES_USER=$POSTGRES_USER
+      - POSTGRES_PASSWORD=$POSTGRES_PASSWORD
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/$POSTGRES_DB_NAME
+      - SPRING_DATASOURCE_USERNAME=$POSTGRES_USER
+      - SPRING_DATASOURCE_PASSWORD=$POSTGRES_PASSWORD
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SHORTENER_BASE_URL=http://localhost:8081
+      - SHORTENER_SHORT_URL_MIN_LENGTH=3
+      - SHORTENER_SHORT_URL_MAX_LENGTH=5
+      - SHORTENER_CHARSET=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789
+
+    ports:
+      - '$LOCAL_PORT_SPRING:$DOCKER_PORT_SPRING'
+  
+  db:
+    image: 'postgres:latest'
+    container_name: db
+    environment:
+      - POSTGRES_USER=$POSTGRES_USER
+      - POSTGRES_PASSWORD=$POSTGRES_PASSWORD
+      - POSTGRES_DB=$POSTGRES_DB_NAME
+    ports:
+      - '$LOCAL_PORT_POSTGRES:$DOCKER_PORT_POSTGRES'
+    
