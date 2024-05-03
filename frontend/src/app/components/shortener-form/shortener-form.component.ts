@@ -12,6 +12,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { HistoryService } from '../../services/history.service';
+import { RemoveHttpPipe } from '../../remove-http.pipe';
 
 @Component({
   selector: 'app-shortener-form',
@@ -24,6 +25,7 @@ import { HistoryService } from '../../services/history.service';
     MatButtonModule,
     ReactiveFormsModule,
     MatCardModule,
+    RemoveHttpPipe
   ],
   templateUrl: './shortener-form.component.html',
   styleUrl: './shortener-form.component.css',

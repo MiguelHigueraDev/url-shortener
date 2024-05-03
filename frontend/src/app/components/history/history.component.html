@@ -19,7 +19,7 @@
         href="{{ item.shortenedUrl }}"
         target="_blank"
         style="display: block; margin-bottom: 6px"
-        >{{ item.shortenedUrl }}</a
+        >{{ item.shortenedUrl | removeHttp }}</a
       >
       <button
         mat-raised-button
