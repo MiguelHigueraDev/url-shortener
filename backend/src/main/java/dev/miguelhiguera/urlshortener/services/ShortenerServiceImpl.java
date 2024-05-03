@@ -73,16 +73,16 @@ public class ShortenerServiceImpl implements ShortenerService {
         String characters = shortenerProperties.getCharset();
         StringBuilder shortUrl = new StringBuilder();
 
-        // Check if short url already exists in database
+        // Generate again if the short url already exists
         while (true) {
+            for (int i = 0; i < urlLength; i++) {
+                shortUrl.append(characters.charAt((int) (Math.random() * characters.length())));
+            }
             Optional<Url> optionalUrl = shortenerRepository.findByShortUrl(shortUrl.toString());
             if (optionalUrl.isEmpty()) {
                 break;
             }
-        }
-
-        for (int i = 0; i < urlLength; i++) {
-            shortUrl.append(characters.charAt((int) (Math.random() * characters.length())));
+            shortUrl.setLength(0);
         }
 
         return shortUrl.toString();
