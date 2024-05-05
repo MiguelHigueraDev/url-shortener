@@ -9,14 +9,6 @@ import { UrlCountService } from '../../services/url-count.service';
   styleUrl: './footer.component.css'
 })
 export class FooterComponent {
-  constructor(private urlCountService: UrlCountService) {}
+  constructor() {}
 
-  count = 0;
-
-  ngOnInit() {
-    this.urlCountService.getCount();
-    this.urlCountService.getCountObservable().subscribe((count) => {
-      this.count = count;
-    });
-  }
 }
