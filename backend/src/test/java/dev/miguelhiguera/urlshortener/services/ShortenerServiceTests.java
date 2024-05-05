@@ -55,6 +55,37 @@ public class ShortenerServiceTests {
         assertShortUrlHasValidCharacters(url.getShortUrl(), shortenerProperties.getCharset());
     }
 
+    @Test
+    public void ShortenerService_ShouldIncreaseVisitCount() {
+        Url url = Url.builder().originalUrl(urlDto.getOriginalUrl()).shortUrl("abc").timesVisited(0).build();
+        when(shortenerRepository.findById(1L)).thenReturn(Optional.of(url));
+        when(shortenerRepository.save(any(Url.class))).thenAnswer(invocation -> invocation.getArgument(0));
+
+        shortenerService.increaseVisitCount(1L);
+
+        Assertions.assertThat(url.getTimesVisited()).isEqualTo(1);
+
+    }
+
+    @Test
+    public void ShortenerService_ShouldReturnOriginalUrlFromShortUrl() {
+        Url url = Url.builder().originalUrl(urlDto.getOriginalUrl()).shortUrl("abc").timesVisited(0).build();
+        when(shortenerRepository.findByShortUrl("abc")).thenReturn(Optional.of(url));
+
+        String originalUrl = shortenerService.getOriginalUrlFromShortUrl("abc");
+
+        Assertions.assertThat(originalUrl).isEqualTo(urlDto.getOriginalUrl());
+    }
+
+    @Test
+    public void ShortenerService_ShouldReturnEmptyStringIfShortUrlDoesNotExist() {
+        when(shortenerRepository.findByShortUrl("abc")).thenReturn(Optional.empty());
+
+        String originalUrl = shortenerService.getOriginalUrlFromShortUrl("abc");
+
+        Assertions.assertThat(originalUrl).isEmpty();
+    }
+
     private static void assertShortUrlHasValidCharacters(String shortUrl, String charset) {
         for (char c : shortUrl.toCharArray()) {
             Assertions.assertThat(charset.contains(String.valueOf(c))).isTrue();
