@@ -31,9 +31,22 @@ button {
     flex-direction: column;
     gap: 12px;
     margin-bottom: 16px;
-    width: 300px;
+    width: 100%;
     word-wrap: break-word;
 }
+
+@media screen and (min-width: 558px) {
+    .history-card {
+        padding: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 16px;
+        width: 300px;
+        word-wrap: break-word;
+    }
+}
+
 
 .original-url, .short-url {
     font-size: 12px;
