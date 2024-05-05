@@ -26,9 +26,13 @@ export class HistoryService {
       );
     } else {
       const parsedHistory: Url[] = history;
-      if (parsedHistory.some((entry: any) => entry.shortenedUrl === shortenedUrl)) return;
+      if (parsedHistory.some((entry: any) => entry.shortenedUrl === shortenedUrl)) {
+        // Place it at the start and then remove the duplicate
+        parsedHistory.unshift(parsedHistory.splice(parsedHistory.findIndex((entry: any) => entry.shortenedUrl === shortenedUrl), 1)[0]);
+      } else {
+        parsedHistory.push({ shortenedUrl, originalUrl });
+      }
 
-      parsedHistory.push({ shortenedUrl, originalUrl });
       if (parsedHistory.length > MAX_HISTORY_LENGTH) parsedHistory.shift();
       localStorage.setItem('history', JSON.stringify(parsedHistory));
     }
