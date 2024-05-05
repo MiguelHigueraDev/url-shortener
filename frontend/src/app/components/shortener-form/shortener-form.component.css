@@ -11,11 +11,11 @@ form {
 
 
 .input {
-    width: 250px;
+    width: 100%;
 }
 
 .card {
-    max-width: 250px;
+    max-width: 90%;
     margin: 0 auto;
     text-align: center;
 }
