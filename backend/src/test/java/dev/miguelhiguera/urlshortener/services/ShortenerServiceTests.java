@@ -37,6 +37,15 @@ public class ShortenerServiceTests {
     }
 
     @Test
+    public void ShortenerService_ShouldReturnUrlCount() {
+        when(shortenerRepository.count()).thenReturn(5L);
+
+        Long count = shortenerService.getUrlCount();
+
+        Assertions.assertThat(count).isEqualTo(5L);
+    }
+
+    @Test
     public void ShortenerService_ShouldGenerateValidUrl() {
         // Mock ShortenerProperties
         when(shortenerProperties.getShortUrlMinLength()).thenReturn(3);
