@@ -13,6 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { HistoryService } from '../../services/history.service';
 import { RemoveHttpPipe } from '../../remove-http.pipe';
+import { UrlCountService } from '../../services/url-count.service';
 
 @Component({
   selector: 'app-shortener-form',
@@ -31,7 +32,7 @@ import { RemoveHttpPipe } from '../../remove-http.pipe';
   styleUrl: './shortener-form.component.css',
 })
 export class ShortenerFormComponent {
-  constructor(private shortenerService: ShortenerService, private historyService: HistoryService) {
+  constructor(private shortenerService: ShortenerService, private historyService: HistoryService, private urlCountService: UrlCountService) {
     // Update error message when input changes
     this.originalUrl.valueChanges.subscribe(() => {
       this.updateErrorMessage();
@@ -58,6 +59,7 @@ export class ShortenerFormComponent {
       .subscribe((response: any) => {
         this.shortenedUrl = response.url;
         this.historyService.addToHistory(this.shortenedUrl, this.originalUrl.value!);
+        this.urlCountService.getCount();
       });
   }
 

@@ -2,3 +2,19 @@
     display: flex;
     justify-content: space-between;
 }
+
+.head {
+    display: flex;
+    flex-direction: column;
+}
+
+.count {
+    font-size: 12px;
+    position: relative;
+    top: -2px;
+}
+
+.title {
+    position: relative;
+    top: 6px;
+}
