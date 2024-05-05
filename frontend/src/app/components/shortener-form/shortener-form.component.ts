@@ -56,11 +56,16 @@ export class ShortenerFormComponent {
     if (this.originalUrl.invalid) return;
     this.shortenerService
       .shortenUrl(this.originalUrl.value!)
-      .subscribe((response: any) => {
-        this.shortenedUrl = response.url;
-        this.historyService.addToHistory(this.shortenedUrl, this.originalUrl.value!);
-        this.urlCountService.getCount();
-      });
+      .subscribe(
+        (response: any) => {
+          this.shortenedUrl = response.url;
+          this.historyService.addToHistory(this.shortenedUrl, this.originalUrl.value!);
+          this.urlCountService.getCount();
+        },
+        (error: any) => {
+          alert('Error shortening URL: ' + error.statusText);
+        }
+      );
   }
 
   updateErrorMessage() {

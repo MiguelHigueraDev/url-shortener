@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { catchError } from 'rxjs';
 
 /**
  * This service is responsible for shortening URLs.
@@ -27,6 +28,11 @@ export class ShortenerService {
         originalUrl: url,
       },
       { headers }
+    ).pipe(
+      catchError((error: any) => {
+        console.error('Error shortening URL:', error);
+        throw error;
+      })
     );
   }
 }
