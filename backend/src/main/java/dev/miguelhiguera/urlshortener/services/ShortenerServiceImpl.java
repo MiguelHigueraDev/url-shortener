@@ -72,32 +72,27 @@ public class ShortenerServiceImpl implements ShortenerService {
         // Choose a random length for the short url
         int minUrlLength = shortenerProperties.getShortUrlMinLength();
         int maxUrlLength = shortenerProperties.getShortUrlMaxLength();
-        int urlLength = (int) (Math.random() * (maxUrlLength - minUrlLength + 1)) + minUrlLength;
 
-        // Validate the URL length configuration
         if (minUrlLength > maxUrlLength || minUrlLength <= 0) {
             throw new IllegalArgumentException("Invalid URL length configuration");
         }
 
         String characters = shortenerProperties.getCharset();
-        StringBuilder shortUrl = new StringBuilder();
+        String shortUrl;
 
-        while (true) {
-            // Generate random URL
-            for (int i = 0; i < urlLength; i++) {
-                shortUrl.append(characters.charAt((int) (Math.random() * characters.length())));
-            }
+        do {
+            int urlLength = (int) (Math.random() * (maxUrlLength - minUrlLength + 1)) + minUrlLength;
+            shortUrl = generateRandomString(urlLength, characters);
+        } while (shortenerRepository.findByShortUrl(shortUrl).isPresent());
 
-            // Check if the URL already exists in the database
-            Optional<Url> optionalUrl = shortenerRepository.findByShortUrl(shortUrl.toString());
-            if (optionalUrl.isEmpty()) {
-                break;
-            }
+        return shortUrl;
+    }
 
-            // Clear the string builder if the URL already exists
-            shortUrl.setLength(0);
+    private String generateRandomString(int length, String charset) {
+        StringBuilder randomString = new StringBuilder();
+        for (int i = 0; i < length; i++) {
+            randomString.append(charset.charAt((int) (Math.random() * charset.length())));
         }
-
-        return shortUrl.toString();
+        return randomString.toString();
     }
 }
