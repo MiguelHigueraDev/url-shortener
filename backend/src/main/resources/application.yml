@@ -7,7 +7,6 @@ spring:
     password: root
   jpa:
     hibernate:
-      ddl-auto: create-drop
       dialect: org.hibernate.dialect.PostgreSQLDialect
 shortener:
   base-url: https://misft.me
