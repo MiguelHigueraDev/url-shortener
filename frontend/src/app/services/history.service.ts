@@ -33,7 +33,7 @@ export class HistoryService {
         parsedHistory.unshift({ shortenedUrl, originalUrl });
       }
 
-      if (parsedHistory.length > MAX_HISTORY_LENGTH) parsedHistory.shift();
+      if (parsedHistory.length > MAX_HISTORY_LENGTH) parsedHistory.pop();
       localStorage.setItem('history', JSON.stringify(parsedHistory));
     }
     this.historySubject.next(this.getHistory());
